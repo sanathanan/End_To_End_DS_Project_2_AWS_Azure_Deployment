@@ -61,7 +61,7 @@ class DataTransformation:
         except Exception as e:
             raise CustomException(e, sys)
         
-    def intiate_data_transformation(self, train_path, test_path):
+    def initiate_data_transformation(self, train_path, test_path):
         try:
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
@@ -69,8 +69,6 @@ class DataTransformation:
             logging.info("Read train and test data completed")
 
             logging.info("Obtaining preprocessing object")
-
-            preprocessing_obj = self.get_data_transformer_object()
 
             target_column_name = "math_score"
             numerical_column = ['reading_score', 'writing_score']
@@ -82,8 +80,8 @@ class DataTransformation:
             target_feature_test_df = test_df[target_column_name]
 
             logging.info(f"Applying preprocessing object on training dataframe and testing dataframe")
-
             
+            preprocessing_obj = self.get_data_transformer_object()
             input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
 
